@@ -1,6 +1,17 @@
 import React from "react";
 
 function NewsDetail(props) {
+  let commentContent = [];
+  if (props.comments[props.news?.id]) {
+    commentContent = props.comments[props.news?.id].map((comment) => (
+      <div>
+        <p>{comment}</p>
+      </div>
+    ));
+  }
+  console.log(props.news?.id);
+  console.log(props.comments);
+
   return (
     <div>
       <figure>
@@ -25,9 +36,10 @@ function NewsDetail(props) {
         type="text"
         placeholder="put your comments here !"
       />
-      <button onClick={props.submitCommentsHandler}>
+      <button onClick={() => props.submitCommentsHandler(props.news?.id)}>
         💬Submit your comments
       </button>
+      {commentContent}
     </div>
   );
 }

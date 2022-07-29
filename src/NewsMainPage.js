@@ -12,10 +12,8 @@ function NewsMainPage() {
   const [showDetail, setShowDetail] = useState(false);
   const [dislikeArticle, setDislikeArticle] = useState([]);
   const [favNews, setFavNews] = useState([]);
-  const [comments, setComments] = useState("");
+  const [comments, setComments] = useState({});
   const [inputComments, setInputComments] = useState("");
-  const [commentsDisplay, setCommentsDisplay] = useState("");
-  const [newComments, setNewComments] = useState("");
 
   let params = useParams();
 
@@ -25,7 +23,11 @@ function NewsMainPage() {
       const newsUrl = `https://api.spaceflightnewsapi.net/v3/articles/${newsId}?`;
       fetch(newsUrl)
         .then((response) => response.json())
-        .then((result) => setSelectedNews(result));
+        .then((result) => {
+          const commentForNew = comments[params.newsId];
+          result["comments"] = commentForNew;
+          setSelectedNews(result);
+        });
       setShowDetail(true);
     } else {
       setShowDetail(false);
@@ -88,8 +90,15 @@ function NewsMainPage() {
     setInputComments(event.currentTarget.value);
   };
 
-  const submitCommentsHandler = (event) => {
-    setCommentsDisplay([...comments], [...commentsDisplay], newComments);
+  const submitCommentsHandler = (id) => {
+    const currentComments = { ...comments };
+    if (currentComments[id.toString()]) {
+      currentComments[id.toString()].push(inputComments);
+    } else {
+      currentComments[id.toString()] = [inputComments];
+    }
+    setComments(currentComments);
+    setInputComments("");
   };
 
   if (!showDetail) {
@@ -147,7 +156,8 @@ function NewsMainPage() {
           saveToFavouriteHandler={saveToFavouriteHandler}
           deleteSavedNewsHandler={deleteSavedNewsHandler}
           inputCommentsHandler={inputCommentsHandler}
-          submitCommentsHadler={submitCommentsHandler}
+          submitCommentsHandler={submitCommentsHandler}
+          comments={comments}
         />{" "}
       </div>
     );
