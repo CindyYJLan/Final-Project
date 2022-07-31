@@ -1,19 +1,12 @@
-import {
-  BrowserRouter,
-  NavLink,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import AllNews from "./AllNews";
 import Blog from "./Blog";
-import "./App.css";
+//import "./App.css";
 import NewsDetail from "./NewsDetail";
 
 function App() {
   return (
     <div>
-      {/* <h1>Spaceflight News</h1> */}
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">

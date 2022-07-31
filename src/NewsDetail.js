@@ -29,7 +29,9 @@ function NewsDetail() {
       <h5>
         Summary: {selectedNews?.summary}{" "}
         <a href={selectedNews?.url} target="_">
-          Read Full Story
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            Read Full Story
+          </span>
         </a>
       </h5>
     </div>

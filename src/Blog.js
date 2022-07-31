@@ -14,7 +14,7 @@ function Blog() {
       });
   }, []);
 
-  return allBlog.map((blog) => (
+  const blogs = allBlog.map((blog) => (
     <BlogItem
       id={blog.id}
       key={blog.id}
@@ -26,6 +26,7 @@ function Blog() {
       summary={blog.summary}
     />
   ));
+  return <div className="flex flex-wrap ml-20">{blogs}</div>;
 }
 
 export default Blog;
