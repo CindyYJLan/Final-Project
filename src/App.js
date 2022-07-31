@@ -1,25 +1,31 @@
 import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import NewsMainPage from "./NewsMainPage";
+import AllNews from "./AllNews";
+import Blog from "./Blog";
 import "./App.css";
 import NewsDetail from "./NewsDetail";
 
 function App() {
   return (
-    <BrowserRouter>
-      <nav>
-        <NavLink to="/">HomePage |</NavLink>
-        {""}
-        <NavLink to="/news">NewsPage</NavLink>
-      </nav>
+    <div>
+      <h1>Spaceflight News</h1>
+      <BrowserRouter>
+        <nav>
+          <NavLink to="/news">
+            <span className="headings">News</span> |
+          </NavLink>
+          <NavLink to="blog">
+            <span className="headings"> {""}Blog</span>
+          </NavLink>
+        </nav>
 
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/news" element={<NewsMainPage />}>
-          <Route path=":newsId" element={<NewsDetail />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AllNews />}></Route>
+          <Route path="/blog" element={<Blog />}></Route>
+          <Route path="/news" element={<AllNews />}></Route>
+          <Route path="/news/:newsId" element={<NewsDetail />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

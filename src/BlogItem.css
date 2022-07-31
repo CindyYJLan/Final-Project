@@ -1,0 +1,9 @@
+.imgLayout {
+  width: 30%;
+  height: 20%;
+}
+
+.blogItem {
+  display: grid;
+  grid-template-columns: auto;
+}

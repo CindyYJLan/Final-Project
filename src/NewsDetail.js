@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function NewsDetail(props) {
+function NewsDetail() {
+  const [selectedNews, setSelectedNews] = useState();
+
+  let params = useParams();
+  useEffect(() => {
+    if (params.newsId) {
+      const newsId = params.newsId;
+      const newsUrl = `https://api.spaceflightnewsapi.net/v3/articles/${newsId}?`;
+      fetch(newsUrl)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setSelectedNews(result);
+        });
+    }
+  }, [params.newsId]);
+
   return (
     <div>
       <figure>
-        <img src={props.news?.imageUrl} alt={props.news?.title} />
+        <img src={selectedNews?.imageUrl} alt={selectedNews?.title} />
       </figure>
-      <h3>{props.news?.title}</h3>
-      <h5>author: {props.news?.author}</h5>
-      <h6>publishedAt: {props.news?.publishedAt}</h6>
-      saveToFavouriteHandler
-      <button
-        onClick={
-          props.isFavourite === "add_to_queue"
-            ? props.saveToFavouriteHandler
-            : props.deleteSavedNewsHandler
-        }
-        value={props.news?.id}
-      >
-        ⭐Save to Favourite
-      </button>
-      <input
-        onChange={props.inputCommentsHandler}
-        type="text"
-        placeholder="put your comments here !"
-      />
-      <button onClick={props.submitCommentsHandler}>
-        💬Submit your comments
-      </button>
+      <h3>{selectedNews?.title}</h3>
+      <h5>author: {selectedNews?.author}</h5>
+      <h6>publishedAt: {selectedNews?.publishedAt}</h6>
+      <h5>
+        Summary: {selectedNews?.summary}{" "}
+        <a href={selectedNews?.url} target="_">
+          Read Full Story
+        </a>
+      </h5>
     </div>
   );
 }

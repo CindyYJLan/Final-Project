@@ -4,11 +4,11 @@ import "./NewsItem.css";
 function NewsItem(props) {
   return (
     <div>
+      <h3>{props.title}</h3>
       <figure>
         <img className="imgLayout" src={props.imageUrl} alt={props.title} />
       </figure>
       <div>
-        <h3>{props.title}</h3>
         <h5>newsSite: {props.newsSite}</h5>
         <h6>publishedAt: {props.publishedAt}</h6>
       </div>
