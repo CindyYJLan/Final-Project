@@ -24,24 +24,8 @@ function AllNews() {
     setDislikeArticle([...dislikeArticle, selectedNews]);
   };
 
-  const saveToFavouriteHandler = (event) => {
-    const selectedNews = event.currentTarget.value * 1;
-    const newFavNews = currentDisplayNews.filter(
-      (news) => news.id === selectedNews
-    );
-    setFavNews([...favNews, ...newFavNews]);
-    console.log(newFavNews);
-  };
-
-  const deleteSavedNewsHandler = (event) => {
-    const selectedNews = event.currentTarget.value;
-    const newFavNews = favNews.filter((news) => news.id !== selectedNews);
-    setFavNews(newFavNews);
-    setCurrentDisplayNews(newFavNews);
-  };
-
   return (
-    <div>
+    <div className="flex flex-wrap ml-96 mr-96 pl-24">
       {currentDisplayNews.map((x) => {
         if (!dislikeArticle.includes(x.id.toString())) {
           return (
@@ -54,8 +38,6 @@ function AllNews() {
               publishedAt={x.publishedAt}
               summary={x.summary}
               dislikeArticleHandler={dislikeArticleHandler}
-              saveToFavouriteHandler={saveToFavouriteHandler}
-              deleteSavedNewsHandler={deleteSavedNewsHandler}
             />
           );
         }
