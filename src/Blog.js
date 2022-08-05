@@ -26,7 +26,16 @@ function Blog() {
       summary={blog.summary}
     />
   ));
-  return <div className="flex flex-wrap ml-20">{blogs}</div>;
+  return (
+    <div className="flex flex-wrap ml-20">
+      <div className="w-full pl-10">
+        <a className="float-left" href="/blog">
+          Blogs
+        </a>
+      </div>
+      {blogs}
+    </div>
+  );
 }
 
 export default Blog;
