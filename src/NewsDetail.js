@@ -23,17 +23,16 @@ function NewsDetail() {
       <figure>
         <img src={selectedNews?.imageUrl} alt={selectedNews?.title} />
       </figure>
-      <h3>{selectedNews?.title}</h3>
-      <h5>author: {selectedNews?.author}</h5>
-      <h6>publishedAt: {selectedNews?.publishedAt}</h6>
-      <h5>
+      <p>{selectedNews?.title}</p>
+      <p>publishedAt: {selectedNews?.publishedAt}</p>
+      <p>
         Summary: {selectedNews?.summary}{" "}
         <a href={selectedNews?.url} target="_">
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             Read Full Story
           </span>
         </a>
-      </h5>
+      </p>
     </div>
   );
 }

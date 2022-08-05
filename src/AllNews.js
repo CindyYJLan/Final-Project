@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
+import Blog from "./Blog";
 
 function AllNews() {
   const [allNews, setAllNews] = useState([]);
@@ -67,6 +68,9 @@ function AllNews() {
           );
         }
       })}
+      <div>
+        <Blog />
+      </div>
     </div>
   );
 }
