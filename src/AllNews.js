@@ -5,8 +5,13 @@ import Blog from "./Blog";
 function AllNews() {
   const [allNews, setAllNews] = useState([]);
   const [currentDisplayNews, setCurrentDisplayNews] = useState([]);
-  const [dislikeArticle, setDislikeArticle] = useState([]);
-  const [favNews, setFavNews] = useState([]);
+  const [dislikeArticle, setDislikeArticle] = useState(
+    JSON.parse(localStorage.getItem("dislikeArticles")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("dislikeArticles", JSON.stringify(dislikeArticle));
+  }, [dislikeArticle]);
 
   useEffect(() => {
     const newsURL = `https://api.spaceflightnewsapi.net/v3/articles?_limit=50`;
@@ -21,7 +26,7 @@ function AllNews() {
   }, []);
 
   const dislikeArticleHandler = (event) => {
-    const selectedNews = event.currentTarget.value;
+    const selectedNews = event.currentTarget.value * 1;
     setDislikeArticle([...dislikeArticle, selectedNews]);
   };
 
@@ -44,19 +49,19 @@ function AllNews() {
       <div className="col-span-4">
         {" "}
         <div className="flex flex-wrap ml-20">
-          <div class="relative">
+          <div className="relative">
             <input
               onChange={searchHandler}
               type="search"
               id="default-search"
-              class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-500 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="🛸search me!"
               required
             />
           </div>
 
           {currentDisplayNews.map((x) => {
-            if (!dislikeArticle.includes(x.id.toString())) {
+            if (!dislikeArticle || !dislikeArticle.includes(x.id)) {
               return (
                 <NewsItem
                   key={x.id}
