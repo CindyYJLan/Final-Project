@@ -1,17 +1,17 @@
-import "./BlogItem.css";
-
 function BlogItem(props) {
   return (
-    <div className="blogItem">
-      <h3>{props.title}</h3>
-      <figure>
-        <img className="imgLayout" src={props.imageUrl} alt={props.title} />
-      </figure>
-
-      <h5>newsSite: {props.newsSite}</h5>
-      <h6>publishedAt: {props.publishedAt}</h6>
-      <h6>updatedAt: {props.updatedAt}</h6>
-      <p>summary: {props.summary}</p>
+    <div className="p-10">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg h-auto">
+        <img className="w-full" src={props.imageUrl} alt={props.title} />
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{props.title}</div>
+          <p className="text-gray-700 text-base">newsSite: {props.newsSite}</p>
+          <p className="text-gray-700 text-base">
+            publishedAt: {props.publishedAt}
+          </p>
+          <p className="text-gray-700 text-base">summary{props.summary}</p>
+        </div>
+      </div>
     </div>
   );
 }
