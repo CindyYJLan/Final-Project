@@ -9,10 +9,10 @@ function NewsItem(props) {
               <span id={`title-${props.id}`}>{props.title}</span>
             </div>
             <p className="text-gray-700 text-base">
-              newsSite: {props.newsSite}
+              NewsSite: {props.newsSite}
             </p>
             <p className="text-gray-700 text-base">
-              publishedAt: {props.publishedAt}
+              Published At: {props.publishedAt}
             </p>
           </div>
 

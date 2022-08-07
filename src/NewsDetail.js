@@ -24,7 +24,7 @@ function NewsDetail() {
         <img src={selectedNews?.imageUrl} alt={selectedNews?.title} />
       </figure>
       <p>{selectedNews?.title}</p>
-      <p>publishedAt: {selectedNews?.publishedAt}</p>
+      <p>PublishedAt: {selectedNews?.publishedAt}</p>
       <p>
         Summary: {selectedNews?.summary}{" "}
         <a href={selectedNews?.url} target="_">
