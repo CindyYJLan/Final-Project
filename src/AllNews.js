@@ -45,7 +45,7 @@ function AllNews() {
     }
   };
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="grid grid-cols-5 gap-3" role="grid">
       <div className="col-span-4">
         {" "}
         <div className="flex flex-wrap ml-20">
@@ -76,7 +76,6 @@ function AllNews() {
               );
             }
           })}
-          <div></div>
         </div>
       </div>
       <div>
