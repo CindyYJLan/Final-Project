@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function NewsItem(props) {
   return (
     <div role="gridcell" aria-labelledby={`title-${props.id}`}>
@@ -17,14 +19,14 @@ function NewsItem(props) {
           </div>
 
           <div className="px-6 pt-4 pb-2">
-            <a
-              href={`/news/${props.id}`}
+            <Link
+              to={`/news/${props.id}`}
               className="no-underline hover:underline ..."
             >
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 Read More
               </span>
-            </a>
+            </Link>
             <button
               onClick={props.dislikeArticleHandler}
               value={props.id}
